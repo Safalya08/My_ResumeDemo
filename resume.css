@@ -1,0 +1,435 @@
+/* =======================================================
+   FUTURISTIC ANIMATED PORTFOLIO UI – FINAL VERSION
+======================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-heavy: rgba(255, 255, 255, 0.18);
+  --border: rgba(255, 255, 255, 0.2);
+  --text: #e8edff;
+  --muted: #a5b0c9;
+
+  --neon1: #38bdf8;
+  --neon2: #a78bfa;
+  --neon3: #4ade80;
+
+  --radius: 22px;
+}
+
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.page-wrapper {
+  width: 100%;
+  max-width: 1100px;   /* you can set 950px also */
+  margin: 0 auto;      /* THIS CENTERS EVERYTHING */
+  padding: 0 15px;     /* responsive padding */
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #0f0f1a, #131427, #000);
+  color: var(--text);
+  padding: 40px 20px;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* =======================================================
+   FLOATING PARTICLES BACKGROUND
+======================================================= */
+.particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--neon1);
+  border-radius: 50%;
+  animation: particleFloat 6s ease-in-out infinite;
+  opacity: 0.35;
+  z-index: -2;
+}
+
+.particle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+.particle:nth-child(3) { top: 40%; left: 50%; animation-delay: 2s; }
+.particle:nth-child(4) { top: 75%; left: 10%; animation-delay: 3s; }
+.particle:nth-child(5) { top: 10%; left: 70%; animation-delay: 4s; }
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  50% { transform: translateY(-20px) translateX(12px); opacity: 1; }
+}
+
+/* =======================================================
+   GLASS CARD REUSABLE CLASS
+======================================================= */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 25px;
+  backdrop-filter: blur(18px) saturate(180%);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.8s ease;
+}
+
+/* Animated border */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(120deg, var(--neon1), var(--neon2), var(--neon3));
+  opacity: 0;
+  transition: 0.4s;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    pointer-events: none;
+  mask-composite: exclude;
+}
+
+.glass:hover::before { opacity: 0.8; }
+
+/* =======================================================
+   HEADER SECTION
+======================================================= */
+header table {
+  width: 100%;
+  max-width: 950px;
+  border-radius: var(--radius);
+  padding: 25px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+header img {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.4);
+  animation: floatImg 4s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(56,189,248,0.5);
+}
+
+@keyframes floatImg {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+header h1 {
+  font-size: 2.4rem;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glowTitle 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes glowTitle {
+  0% { text-shadow: 0 0 10px var(--neon1); }
+  100% { text-shadow: 0 0 25px var(--neon2); }
+}
+
+header p { margin-top: 8px; color: var(--muted); }
+
+header a p {
+  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  padding: 12px 26px;
+  border-radius: 50px;
+  margin-top: 15px;
+  width: fit-content;
+  color: white;
+  transition: 0.2s;
+}
+
+header a p:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 30px rgba(99,102,241,0.6);
+}
+
+header hr {
+  width: 100%;
+  max-width: 950px;
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, transparent, var(--neon2), transparent);
+  margin: 25px 0;
+}
+
+/* =======================================================
+   SECTION TITLES
+======================================================= */
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 45px 0 15px;
+  width: 100%;
+  max-width: 950px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 5px;
+  width: 6px;
+  height: 25px;
+  border-radius: 4px;
+  background: linear-gradient(var(--neon1), var(--neon2));
+  animation: glowBar 2s infinite alternate ease-in-out;
+}
+
+@keyframes glowBar {
+  from { box-shadow: 0 0 10px var(--neon1); }
+  to   { box-shadow: 0 0 20px var(--neon2); }
+}
+
+/* =======================================================
+   SKILLS GRID
+======================================================= */
+#skills {
+  width: 100%;
+  max-width: 950px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* SKILL CARD */
+/* Group Wrapper */
+.skill-group {
+  margin-bottom: 50px;
+}
+
+/* Group Title */
+.group-title {
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  color: var(--neon1);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Smaller Grid */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 25px;
+}
+
+/* Smaller Cards */
+.skill-card {
+  padding: 20px 12px;
+  border-radius: 18px;
+}
+
+/* Smaller Rings */
+.skill-ring {
+  width: 90px;
+  height: 90px;
+}
+
+.skill-ring svg {
+  width: 90px;
+  height: 90px;
+}
+
+/* Centered Skill Label */
+.skill-card p {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.skill-card {
+  padding: 25px 15px;
+  text-align: center;
+  border-radius: var(--radius);
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 35px rgba(139,92,246,0.7);
+}
+
+.skill-card::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -110%;
+  left: -10%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: rotate(25deg);
+  transition: 0.6s;
+}
+
+.skill-card:hover::after { top: 120%; }
+
+.skill-card h3 {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: var(--neon1);
+  letter-spacing: 1px;
+}
+
+/* CIRCULAR SKILL RINGS */
+.skill-ring {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.skill-ring svg {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg);
+}
+
+.skill-ring circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.skill-ring circle.bg {
+  stroke: rgba(255,255,255,0.15);
+}
+
+.skill-ring circle.progress {
+  stroke: url(#gradStroke);
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  animation: fillCircle 2s ease forwards;
+}
+
+@keyframes fillCircle {
+  to { stroke-dashoffset: calc(314 - (314 * var(--percent) / 100)); }
+}
+
+/* =======================================================
+   EDUCATION TABLE
+======================================================= */
+#education table {
+  width: 100%;
+  max-width: 950px;
+  border-collapse: collapse;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#education td {
+  padding: 14px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+#education tr:hover td {
+  background: var(--glass-heavy);
+}
+
+/* =======================================================
+   EXPERIENCE + PROJECTS
+======================================================= */
+#experience ul, #projects ul {
+  list-style: none;
+  width: 100%;
+  max-width: 950px;
+}
+
+#experience li, #projects li {
+  margin-bottom: 18px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--border);
+}
+
+#experience li:hover, #projects li:hover {
+  transform: translateY(-6px);
+  transition: 0.3s;
+  box-shadow: 0 0 18px rgba(148,109,255,0.4);
+}
+
+#experience li ul, #projects li ul {
+  margin-left: 25px;
+}
+
+/* =======================================================
+   FOOTER
+======================================================= */
+footer {
+  margin-top: 40px;
+  padding: 25px;
+  width: 100%;
+  max-width: 950px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* =======================================================
+   ABOUT PAGE
+======================================================= */
+.about-container {
+  width: 100%;
+  max-width: 950px;
+  margin-top: 50px;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 2.3rem;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 25px;
+}
+
+.about-container p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+/* =======================================================
+   ANIMATIONS
+======================================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header table tr {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header img { margin-bottom: 15px; }
+}
